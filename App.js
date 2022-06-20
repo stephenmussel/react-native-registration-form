@@ -14,10 +14,11 @@ import { Formik } from 'formik';
 
 function App() {
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
+  // NOTES: don't need...Formik takes care of state!
+  // const [username, setUsername] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [confirm, setConfirm] = useState('');
 
   // function confirmPassword(props) {
   //   const { nativeEvent: { text } } = props;
@@ -28,50 +29,68 @@ function App() {
   // }
 
   // another option is to destructure props
-  const confirmPassword = ({ nativeEvent: { text } }) => {
-    if (text != password) {
-      alert('Password incorrect, try again!');
+  // const confirmPassword = ({ nativeEvent: { text } }) => {
+  //   if (text != password) {
+  //     alert('Password incorrect, try again!');
+  //   }
+  // }
+
+  const onSubmit = (values) => {
+    if (values.password !== values.confirm) {
+      alert('Password incorrect, try again!')
     }
   }
 
   return (
     // <View style={styles.container}>
     <>
-    <View style={{ height: '10%', backgroundColor: 'red' }} />
-    <ScrollView>
-      <Inputs
-        label="Username"
-        placeholder="Username"
-        value={username}
+      <View style={{ height: '10%', backgroundColor: 'red' }} />
+      <Formik
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+          confirm: '',
+        }}
+        onSubmit={onSubmit}
+      >
+        {({ handleChange, handleSubmit, values }) => (
+          <ScrollView>
+            <Inputs
+              label="Username"
+              placeholder="Username"
+              value={values.username}
 
-        // no auth function that does nothing; used as 'placeholder'
-        // onChangeText={() => {}}   
-        onChangeText={setUsername}
-      />
-      <Inputs
-        label="Email"
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Inputs
-        label="Password"
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Inputs
-        label="Confirm Password"
-        placeholder="Confirm Password"
-        value={confirm}
-        onChangeText={setConfirm}
-        secureTextEntry
-        onSubmitEditing={confirmPassword}
-      />
-      {/* <StatusBar style="auto" /> */}
-    </ScrollView>
-    <View style={{ height: '10%', backgroundColor: 'blue' }} />
+              // no auth function that does nothing; used as 'placeholder'
+              // onChangeText={() => {}}   
+              onChangeText={handleChange('username')}
+            />
+            <Inputs
+              label="Email"
+              placeholder="Email"
+              value={values.email}
+              onChangeText={handleChange('email')}
+            />
+            <Inputs
+              label="Password"
+              placeholder="Password"
+              value={values.password}
+              onChangeText={handleChange('password')}
+              secureTextEntry
+            />
+            <Inputs
+              label="Confirm Password"
+              placeholder="Confirm Password"
+              value={values.confirm}
+              onChangeText={handleChange('confirm')}
+              secureTextEntry
+              onSubmitEditing={handleSubmit}
+            />
+            {/* <StatusBar style="auto" /> */}
+          </ScrollView>
+        )}
+      </Formik>
+      <View style={{ height: '10%', backgroundColor: 'blue' }} />
     </>
   );
 }
