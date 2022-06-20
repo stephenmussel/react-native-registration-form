@@ -53,6 +53,7 @@ function App() {
           confirm: '',
           accessible: true,
           accessibilityLabel: '',
+          accessibilityRole: '',
         }}
         onSubmit={onSubmit}
       >
@@ -69,6 +70,7 @@ function App() {
               // no auth function that does nothing; used as 'placeholder'
               // onChangeText={() => {}}   
               onChangeText={handleChange('username')}
+              accessibilityRole="Input field"
               accessibilityLabel="Enter username"
             />
             <Inputs
@@ -76,6 +78,7 @@ function App() {
               placeholder="Email"
               value={values.email}
               onChangeText={handleChange('email')}
+              accessibilityRole="Input field"
               accessibilityLabel="Enter email"
             />
             <Inputs
@@ -84,6 +87,7 @@ function App() {
               value={values.password}
               onChangeText={handleChange('password')}
               secureTextEntry
+              accessibilityRole="Input field"
               accessibilityLabel="Enter password"
             />
             <Inputs
@@ -93,6 +97,7 @@ function App() {
               onChangeText={handleChange('confirm')}
               secureTextEntry
               onSubmitEditing={handleSubmit}
+              accessibilityRole="Input field"
               accessibilityLabel="Confirm password"
             />
             {/* <StatusBar style="auto" /> */}
@@ -107,7 +112,7 @@ function App() {
 // reusable component for inputs
 function Inputs(props) {
 
-  const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing, accessible, accessibilityLabel } = props;
+  const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing, accessible, accessibilityLabel, accessibilityRole } = props;
 
   return (
     <View style={{ padding: 16 }}>
@@ -120,6 +125,7 @@ function Inputs(props) {
         onSubmitEditing={onSubmitEditing}
         accessible={accessible}
         accessibilityLabel={accessibilityLabel}
+        accessibilityRole={accessibilityRole}
         style={{ padding: 8, fontSize: 18 }}
       />
     </View>
