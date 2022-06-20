@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
 function App() {
 
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+
 
   return (
     <View style={styles.container}>
@@ -26,7 +30,24 @@ function App() {
         // onChangeText={() => {}}   
         onChangeText={setUsername}     
       />
-      
+      <Inputs 
+        label="Email"
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}     
+      />
+      <Inputs 
+        label="Password"
+        placeholder="Password"
+        value={password} 
+        onChangeText={setPassword}     
+      />
+        <Inputs 
+        label="Confirm Password"
+        placeholder="Confirm Password"
+        value={confirm} 
+        onChangeText={setConfirm}     
+      />
       {/* <StatusBar style="auto" /> */}
     </View>
   );
