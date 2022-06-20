@@ -51,11 +51,16 @@ function App() {
           email: '',
           password: '',
           confirm: '',
+          accessible: true,
+          accessibilityLabel: '',
         }}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values }) => (
-          <ScrollView>
+          <ScrollView
+            accessible={true}
+            accessibilityLabel="Scrolls view vertically"
+          >
             <Inputs
               label="Username"
               placeholder="Username"
@@ -64,12 +69,14 @@ function App() {
               // no auth function that does nothing; used as 'placeholder'
               // onChangeText={() => {}}   
               onChangeText={handleChange('username')}
+              accessibilityLabel="Enter username"
             />
             <Inputs
               label="Email"
               placeholder="Email"
               value={values.email}
               onChangeText={handleChange('email')}
+              accessibilityLabel="Enter email"
             />
             <Inputs
               label="Password"
@@ -77,6 +84,7 @@ function App() {
               value={values.password}
               onChangeText={handleChange('password')}
               secureTextEntry
+              accessibilityLabel="Enter password"
             />
             <Inputs
               label="Confirm Password"
@@ -85,6 +93,7 @@ function App() {
               onChangeText={handleChange('confirm')}
               secureTextEntry
               onSubmitEditing={handleSubmit}
+              accessibilityLabel="Confirm password"
             />
             {/* <StatusBar style="auto" /> */}
           </ScrollView>
@@ -98,7 +107,7 @@ function App() {
 // reusable component for inputs
 function Inputs(props) {
 
-  const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing } = props;
+  const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing, accessible, accessibilityLabel } = props;
 
   return (
     <View style={{ padding: 16 }}>
@@ -109,6 +118,8 @@ function Inputs(props) {
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         onSubmitEditing={onSubmitEditing}
+        accessible={accessible}
+        accessibilityLabel={accessibilityLabel}
         style={{ padding: 8, fontSize: 18 }}
       />
     </View>
