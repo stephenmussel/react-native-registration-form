@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +18,20 @@ function App() {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
 
+  // function confirmPassword(props) {
+  //   const { nativeEvent: { text } } = props;
+
+  //   if( text !== password ) {
+  //     alert('Password incorrect, try again!')
+  //   }
+  // }
+
+  // another option is to destructure props
+  const confirmPassword = ({ nativeEvent: { text } }) => {
+    if(text != password) {
+      alert('Password incorrect, try again!');
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -49,6 +63,7 @@ function App() {
         value={confirm} 
         onChangeText={setConfirm}   
         secureTextEntry 
+        onSubmitEditing={confirmPassword}
       />
       {/* <StatusBar style="auto" /> */}
     </View>
@@ -58,7 +73,7 @@ function App() {
 // reusable component for inputs
 function Inputs(props) {
 
-  const { label, placeholder, value, onChangeText, secureTextEntry } = props;
+  const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing } = props;
 
   return(
     <View>
@@ -68,6 +83,7 @@ function Inputs(props) {
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        onSubmitEditing={onSubmitEditing}
       />
     </View>
   )
