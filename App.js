@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
 
 function App() {
 
@@ -28,45 +28,50 @@ function App() {
 
   // another option is to destructure props
   const confirmPassword = ({ nativeEvent: { text } }) => {
-    if(text != password) {
+    if (text != password) {
       alert('Password incorrect, try again!');
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Inputs 
+    // <View style={styles.container}>
+    <>
+    <View style={{ height: '10%', backgroundColor: 'red' }} />
+    <ScrollView>
+      <Inputs
         label="Username"
         placeholder="Username"
         value={username}
 
         // no auth function that does nothing; used as 'placeholder'
         // onChangeText={() => {}}   
-        onChangeText={setUsername}     
+        onChangeText={setUsername}
       />
-      <Inputs 
+      <Inputs
         label="Email"
         placeholder="Email"
         value={email}
-        onChangeText={setEmail}     
+        onChangeText={setEmail}
       />
-      <Inputs 
+      <Inputs
         label="Password"
         placeholder="Password"
-        value={password} 
+        value={password}
         onChangeText={setPassword}
-        secureTextEntry     
+        secureTextEntry
       />
-        <Inputs 
+      <Inputs
         label="Confirm Password"
         placeholder="Confirm Password"
-        value={confirm} 
-        onChangeText={setConfirm}   
-        secureTextEntry 
+        value={confirm}
+        onChangeText={setConfirm}
+        secureTextEntry
         onSubmitEditing={confirmPassword}
       />
       {/* <StatusBar style="auto" /> */}
-    </View>
+    </ScrollView>
+    <View style={{ height: '10%', backgroundColor: 'blue' }} />
+    </>
   );
 }
 
@@ -75,10 +80,10 @@ function Inputs(props) {
 
   const { label, placeholder, value, onChangeText, secureTextEntry, onSubmitEditing } = props;
 
-  return(
+  return (
     <View>
       <Text>{label}</Text>
-      <TextInput 
+      <TextInput
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
