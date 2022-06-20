@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { useState } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,10 +12,22 @@ const styles = StyleSheet.create({
 });
 
 function App() {
+
+  const [username, setUsername] = useState('');
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Inputs 
+        label="Username"
+        placeholder="Username"
+        value={username}
+
+        // no auth function that does nothing; used as 'placeholder'
+        // onChangeText={() => {}}   
+        onChangeText={setUsername}     
+      />
+      
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
