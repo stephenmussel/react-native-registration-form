@@ -40,13 +40,15 @@ function App() {
         label="Password"
         placeholder="Password"
         value={password} 
-        onChangeText={setPassword}     
+        onChangeText={setPassword}
+        secureTextEntry     
       />
         <Inputs 
         label="Confirm Password"
         placeholder="Confirm Password"
         value={confirm} 
-        onChangeText={setConfirm}     
+        onChangeText={setConfirm}   
+        secureTextEntry 
       />
       {/* <StatusBar style="auto" /> */}
     </View>
@@ -56,7 +58,7 @@ function App() {
 // reusable component for inputs
 function Inputs(props) {
 
-  const { label, placeholder, value, onChangeText } = props;
+  const { label, placeholder, value, onChangeText, secureTextEntry } = props;
 
   return(
     <View>
@@ -65,6 +67,7 @@ function Inputs(props) {
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   )
